@@ -52,5 +52,6 @@ if __name__ == '__main__':
     nodes[4].add(nodes[5], nodes[6])
     nodes[6].add(nodes[7])
 
-    result = depth_first_search(nodes[0], nodes[3]) # 0 -> 2 -> 4 -> 6 -> 7 -> 5 -> 1 -> 3
+    # Solution: 0 -> 2 -> 4 -> 6 -> 7 -> 5 -> 1 -> 3
+    result = depth_first_search(nodes[0], nodes[3]) 
     print(f"{'No solution.' if not result else 'Solution found.'}")
