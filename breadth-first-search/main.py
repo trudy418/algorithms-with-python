@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -8,12 +11,12 @@ class Node:
             self.subnodes.append(subnode)
 
 
-def depth_first_search(start_node, goal_node):
+def breadth_first_search(start_node, goal_node):
     visited = set()
-    stack = [start_node]
+    queue = deque([start_node])
 
-    while stack:
-        current_node = stack.pop()
+    while queue:
+        current_node = queue.popleft()
 
         if current_node == goal_node:
             print(f"Goal: {current_node.value}")
@@ -25,7 +28,7 @@ def depth_first_search(start_node, goal_node):
 
             for subnode in current_node.subnodes:
                 if subnode not in visited:
-                    stack.append(subnode)
+                    queue.append(subnode)
 
     return False
 
@@ -53,6 +56,6 @@ if __name__ == '__main__':
     nodes[4].add(nodes[5], nodes[6])
     nodes[6].add(nodes[7])
 
-    # Solution: 0 -> 2 -> 4 -> 6 -> 7 -> 5 -> 1 -> 3
-    result = depth_first_search(nodes[0], nodes[3]) 
+    # Solution: 0 -> 1 -> 2 -> 3
+    result = breadth_first_search(nodes[0], nodes[3]) 
     print(f"{'No solution.' if not result else 'Solution found.'}")
